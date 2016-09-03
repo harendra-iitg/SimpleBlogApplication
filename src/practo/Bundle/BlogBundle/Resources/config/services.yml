@@ -1,0 +1,4 @@
+services:
+#    practo_blog.example:
+#        class: practo\Bundle\BlogBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]

@@ -1,0 +1,6 @@
+practo_blog_homepage:
+    path:     /
+    defaults: { _controller: practoBlogBundle:Blog:index }
+practo_blog_create:
+    path:     /create
+    defaults: { _controller: practoBlogBundle:Blog:create }
