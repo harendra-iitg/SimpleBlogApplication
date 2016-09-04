@@ -4,3 +4,14 @@ practo_blog_homepage:
 practo_blog_create:
     path:     /create
     defaults: { _controller: practoBlogBundle:Blog:create }
+practo_blog_list:
+    path:     /list
+    defaults: { _controller: practoBlogBundle:Blog:list }
+practo_blog_delete:
+    path:     /delete/{id}
+    defaults: { _controller: practoBlogBundle:Blog:delete }
+    requirements:
+        id: '\d+'
+practo_blog_update:
+    path:     /update/{id}
+    defaults: { _controller: practoBlogBundle:Blog:update }

@@ -3,11 +3,12 @@
 namespace practo\Bundle\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Blog
  *
- * @ORM\Table(name="blog")
+ * @ORM\Table(name="blogs")
  * @ORM\Entity(repositoryClass="practo\Bundle\BlogBundle\Repository\BlogRepository")
  */
 class Blog
@@ -24,6 +25,7 @@ class Blog
     /**
      * @var string
      *
+     * @Assert\NotBlank()
      * @ORM\Column(name="title", type="string", length=255, nullable=true)
      */
     private $title;
@@ -31,6 +33,7 @@ class Blog
     /**
      * @var string
      *
+     * @Assert\NotBlank()
      * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
@@ -44,7 +47,6 @@ class Blog
 
     /**
      * @var \DateTime
-     *
      * @ORM\Column(name="modifiedAt", type="datetime", nullable=true)
      */
     private $modifiedAt;

@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<style>
+table, th, td {
+   border: 1px solid black;
+}
+</style>
+<table>
+<thead>
+<tr><td>Title</td><td>Description</td><td>Action</td></tr>
+</thead>
+{% for blog in blogs %}
+<tr>
+<td><a href="{{ path('practo_blog_update', { 'id': blog.id }) }}">{{ blog.title }} </a></td>
+<td>{{ blog.description }}</td> 
+<td><a href="/web/app_dev.php/delete/{{blog.id}}">delete</a></td> 
+</tr>
+{% endfor %}
+</table>
+<ul>  
+        <li>
+            <a href="{{ path('practo_blog_create') }}">Create a new entry</a>
+        </li> 
+</ul> 
+{% endblock %}
