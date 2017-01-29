@@ -11,3 +11,16 @@ services:
     practo_blog.blog_manager:
         class: practo\Bundle\BlogBundle\Manager\BlogManager
         arguments: ["@doctrine"]
+    practo_blog.elastic_search_manager:
+        class: practo\Bundle\BlogBundle\Manager\ElasticSearchManager
+        arguments:
+            - "@practo_blog.elasticsearch"
+            - "@doctrine"
+            - %item_search_index_name%
+    practo_blog.elasticsearch:
+        class: Elasticsearch\Client
+        factory: ['@practo_blog.elasticsearch_factory', build]
+    practo_blog.elasticsearch_factory:
+        class: Elasticsearch\ClientBuilder
+        calls:
+            - [ create ]
