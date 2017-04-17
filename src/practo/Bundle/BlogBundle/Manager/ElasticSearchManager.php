@@ -68,7 +68,8 @@ class ElasticSearchManager
 	}
 
 	public function search($searchTerm) {
-		$params = ['index' => $this->indexName,'type' => 'post','body' => ['query' => ['match' => ['title' => $searchTerm]]]];
+		//$params = ['index' => $this->indexName,'type' => 'post','body' => ['query' => [ 'bool' => [ 'should' => [ ['match' => ['title' => $searchTerm]]]]]]];
+		$params = ['body' => ['query' => [ 'bool' => [ 'should' => [ ['match' => ['title' => $searchTerm]]]]]]];
 		$results = $this->elasticsearch->search($params);
                 $rstArr = $results['hits']['hits'];
                 $matchArr = [];

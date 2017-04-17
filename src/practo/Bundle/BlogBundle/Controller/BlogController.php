@@ -20,7 +20,7 @@ class BlogController extends Controller
 	{
 		//$client = $this->get('practo_blog.elasticsearch');
 		$esManager = $this->get('practo_blog.elastic_search_manager');
-                $response = $esManager->search('this');
+                $response = $esManager->search('new');
                 print_r($response);die;
 
 	/*	$params = [
