@@ -4,30 +4,45 @@ security:
 
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory:
-            memory:
-                users:
-                    ryan:
-                        password: ryanpass
-                        roles: 'ROLE_USER'
-                    admin:
-                        password: kitten
-                        roles: 'ROLE_ADMIN'    
+        our_db_provider:
+            entity:
+                class: practo\Bundle\BlogBundle\Entity\User
+                property: apiKey
+                # if you're using multiple entity managers
+                # manager_name: customer
+        #in_memory:
+        #    memory:
+        #        users:
+        #            ryan:
+        #                password: ryanpass
+        #                roles: 'ROLE_USER'
+        #            admin:
+        #                password: kitten
+        #                roles: 'ROLE_ADMIN'    
 
     encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
+        practo\Bundle\BlogBundle\Entity\User:
+            algorithm: bcrypt
+        #Symfony\Component\Security\Core\User\User: plaintext
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-        default:
-            anonymous: ~
-            http_basic: ~
+        #dev:
+        #    pattern: ^/(_(profiler|wdt)|css|images|js)/
+        #    security: false
+        #default:
+        #    anonymous: ~
+        #    http_basic: ~
 
         main:
             anonymous: ~
+            logout: ~
+  
+            guard:
+                authenticators:
+                    - practo_blog.token_authenticator
+
+            #anonymous: ~
             # activate different ways to authenticate
 
             # http_basic: ~
@@ -36,5 +51,5 @@ security:
             # form_login: ~
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
 
-    access_control:
-        - { path: ^/list, roles: ROLE_ADMIN }
+    #access_control:
+    #    - { path: ^/list, roles: ROLE_ADMIN }

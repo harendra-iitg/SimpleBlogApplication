@@ -24,3 +24,5 @@ services:
         class: Elasticsearch\ClientBuilder
         calls:
             - [ create ]
+    practo_blog.token_authenticator:
+        class: practo\Bundle\BlogBundle\Security\TokenAuthenticator
